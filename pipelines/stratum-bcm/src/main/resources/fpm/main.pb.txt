@@ -1,0 +1,1908 @@
+table_map {
+  key: "NoAction"
+  value {
+    action_descriptor {
+      type: P4_ACTION_TYPE_FUNCTION
+      primitive_ops: P4_ACTION_OP_NOP
+    }
+  }
+}
+table_map {
+  key: "hdr.arp"
+  value {
+    header_descriptor {
+      type: P4_HEADER_ARP
+    }
+  }
+}
+table_map {
+  key: "hdr.arp.hw_addr_len"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 32
+      bit_width: 8
+      header_type: P4_HEADER_ARP
+    }
+  }
+}
+table_map {
+  key: "hdr.arp.hw_type"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 16
+      header_type: P4_HEADER_ARP
+    }
+  }
+}
+table_map {
+  key: "hdr.arp.opcode"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 48
+      bit_width: 16
+      header_type: P4_HEADER_ARP
+    }
+  }
+}
+table_map {
+  key: "hdr.arp.proto_addr_len"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 40
+      bit_width: 8
+      header_type: P4_HEADER_ARP
+    }
+  }
+}
+table_map {
+  key: "hdr.arp.proto_type"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 16
+      bit_width: 16
+      header_type: P4_HEADER_ARP
+    }
+  }
+}
+table_map {
+  key: "hdr.arp.sender_hw_addr"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 64
+      bit_width: 48
+      header_type: P4_HEADER_ARP
+    }
+  }
+}
+table_map {
+  key: "hdr.arp.sender_proto_addr"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 112
+      bit_width: 32
+      header_type: P4_HEADER_ARP
+    }
+  }
+}
+table_map {
+  key: "hdr.arp.target_hw_addr"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 144
+      bit_width: 48
+      header_type: P4_HEADER_ARP
+    }
+  }
+}
+table_map {
+  key: "hdr.arp.target_proto_addr"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ARP_TPA
+      bit_offset: 192
+      bit_width: 32
+      header_type: P4_HEADER_ARP
+    }
+  }
+}
+table_map {
+  key: "hdr.ethernet"
+  value {
+    header_descriptor {
+      type: P4_HEADER_ETHERNET
+    }
+  }
+}
+table_map {
+  key: "hdr.ethernet.dst_addr"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ETH_DST
+      valid_conversions {
+        match_type: EXACT
+        conversion: P4_CONVERT_TO_U64
+      }
+      valid_conversions {
+        match_type: TERNARY
+        conversion: P4_CONVERT_TO_U64_AND_MASK
+      }
+      bit_width: 48
+      header_type: P4_HEADER_ETHERNET
+    }
+  }
+}
+table_map {
+  key: "hdr.ethernet.ether_type"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ETH_TYPE
+      valid_conversions {
+        match_type: TERNARY
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_offset: 96
+      bit_width: 16
+      header_type: P4_HEADER_ETHERNET
+    }
+  }
+}
+table_map {
+  key: "hdr.ethernet.src_addr"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ETH_SRC
+      bit_offset: 48
+      bit_width: 48
+      header_type: P4_HEADER_ETHERNET
+    }
+  }
+}
+table_map {
+  key: "hdr.icmp_header"
+  value {
+    header_descriptor {
+      type: P4_HEADER_ICMP
+    }
+  }
+}
+table_map {
+  key: "hdr.icmp_header.checksum"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 16
+      bit_width: 16
+      header_type: P4_HEADER_ICMP
+    }
+  }
+}
+table_map {
+  key: "hdr.icmp_header.code"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ICMP_CODE
+      bit_offset: 8
+      bit_width: 8
+      header_type: P4_HEADER_ICMP
+    }
+  }
+}
+table_map {
+  key: "hdr.icmp_header.icmp_type"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ICMP_TYPE
+      bit_width: 8
+      header_type: P4_HEADER_ICMP
+    }
+  }
+}
+table_map {
+  key: "hdr.inner_mpls"
+  value {
+    header_descriptor {
+    }
+  }
+}
+table_map {
+  key: "hdr.inner_mpls.bos"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_MPLS_BOS
+      bit_offset: 23
+      bit_width: 1
+      header_type: P4_HEADER_MPLS
+    }
+  }
+}
+table_map {
+  key: "hdr.inner_mpls.label"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_MPLS_LABEL
+      bit_width: 20
+      header_type: P4_HEADER_MPLS
+    }
+  }
+}
+table_map {
+  key: "hdr.inner_mpls.tc"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_MPLS_TRAFFIC_CLASS
+      bit_offset: 20
+      bit_width: 3
+      header_type: P4_HEADER_MPLS
+    }
+  }
+}
+table_map {
+  key: "hdr.inner_mpls.ttl"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_MPLS_TTL
+      bit_offset: 24
+      bit_width: 8
+      header_type: P4_HEADER_MPLS
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv4_base"
+  value {
+    header_descriptor {
+      type: P4_HEADER_IPV4
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv4_base.diffserv"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_IPV4_DIFFSERV
+      valid_conversions {
+        match_type: TERNARY
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_offset: 8
+      bit_width: 8
+      header_type: P4_HEADER_IPV4
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv4_base.dst_addr"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_IPV4_DST
+      valid_conversions {
+        match_type: LPM
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      valid_conversions {
+        match_type: TERNARY
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_offset: 128
+      bit_width: 32
+      header_type: P4_HEADER_IPV4
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv4_base.flags"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 48
+      bit_width: 3
+      header_type: P4_HEADER_IPV4
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv4_base.frag_offset"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 51
+      bit_width: 13
+      header_type: P4_HEADER_IPV4
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv4_base.hdr_checksum"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 80
+      bit_width: 16
+      header_type: P4_HEADER_IPV4
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv4_base.identification"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 32
+      bit_width: 16
+      header_type: P4_HEADER_IPV4
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv4_base.ihl"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_IPV4_IHL
+      bit_offset: 4
+      bit_width: 4
+      header_type: P4_HEADER_IPV4
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv4_base.protocol"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_IPV4_PROTO
+      valid_conversions {
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      valid_conversions {
+        match_type: TERNARY
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_offset: 72
+      bit_width: 8
+      header_type: P4_HEADER_IPV4
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv4_base.src_addr"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_IPV4_SRC
+      valid_conversions {
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      valid_conversions {
+        match_type: TERNARY
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_offset: 96
+      bit_width: 32
+      header_type: P4_HEADER_IPV4
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv4_base.total_len"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_IPV4_TOTAL_LENGTH
+      bit_offset: 16
+      bit_width: 16
+      header_type: P4_HEADER_IPV4
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv4_base.ttl"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_NW_TTL
+      valid_conversions {
+        match_type: TERNARY
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_offset: 64
+      bit_width: 8
+      header_type: P4_HEADER_IPV4
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv4_base.version"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_IP_VERSION
+      bit_width: 4
+      header_type: P4_HEADER_IPV4
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv6_base"
+  value {
+    header_descriptor {
+      type: P4_HEADER_IPV6
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv6_base.dst_addr"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_IPV6_DST
+      bit_offset: 192
+      bit_width: 128
+      header_type: P4_HEADER_IPV6
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv6_base.flow_label"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 12
+      bit_width: 20
+      header_type: P4_HEADER_IPV6
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv6_base.hop_limit"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_NW_TTL
+      bit_offset: 56
+      bit_width: 8
+      header_type: P4_HEADER_IPV6
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv6_base.next_header"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_IPV6_NEXT_HDR
+      bit_offset: 48
+      bit_width: 8
+      header_type: P4_HEADER_IPV6
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv6_base.payload_length"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_IPV6_PAYLOAD_SIZE
+      bit_offset: 32
+      bit_width: 16
+      header_type: P4_HEADER_IPV6
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv6_base.src_addr"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_IPV6_SRC
+      bit_offset: 64
+      bit_width: 128
+      header_type: P4_HEADER_IPV6
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv6_base.traffic_class"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_IPV6_TRAFFIC_CLASS
+      bit_offset: 4
+      bit_width: 8
+      header_type: P4_HEADER_IPV6
+    }
+  }
+}
+table_map {
+  key: "hdr.ipv6_base.version"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_IP_VERSION
+      bit_width: 4
+      header_type: P4_HEADER_IPV6
+    }
+  }
+}
+table_map {
+  key: "hdr.mpls"
+  value {
+    header_descriptor {
+      type: P4_HEADER_MPLS
+    }
+  }
+}
+table_map {
+  key: "hdr.mpls.bos"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_MPLS_BOS
+      bit_offset: 23
+      bit_width: 1
+      header_type: P4_HEADER_MPLS
+    }
+  }
+}
+table_map {
+  key: "hdr.mpls.label"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_MPLS_LABEL
+      valid_conversions {
+        match_type: EXACT
+        conversion: P4_CONVERT_TO_U32
+      }
+      valid_conversions {
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_width: 20
+      header_type: P4_HEADER_MPLS
+    }
+  }
+}
+table_map {
+  key: "hdr.mpls.tc"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_MPLS_TRAFFIC_CLASS
+      bit_offset: 20
+      bit_width: 3
+      header_type: P4_HEADER_MPLS
+    }
+  }
+}
+table_map {
+  key: "hdr.mpls.ttl"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_MPLS_TTL
+      bit_offset: 24
+      bit_width: 8
+      header_type: P4_HEADER_MPLS
+    }
+  }
+}
+table_map {
+  key: "hdr.packet_in"
+  value {
+    header_descriptor {
+    }
+  }
+}
+table_map {
+  key: "hdr.packet_in.ingress_logical_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 32
+    }
+  }
+}
+table_map {
+  key: "hdr.packet_in.ingress_physical_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_INGRESS_PORT
+      bit_width: 9
+    }
+  }
+}
+table_map {
+  key: "hdr.packet_in.padding1"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 7
+    }
+  }
+}
+table_map {
+  key: "hdr.packet_in.padding2"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 7
+    }
+  }
+}
+table_map {
+  key: "hdr.packet_in.target_egress_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_EGRESS_PORT
+      bit_width: 9
+    }
+  }
+}
+table_map {
+  key: "hdr.packet_out"
+  value {
+    header_descriptor {
+    }
+  }
+}
+table_map {
+  key: "hdr.packet_out.egress_physical_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_EGRESS_PORT
+      bit_width: 9
+    }
+  }
+}
+table_map {
+  key: "hdr.packet_out.padding"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 6
+    }
+  }
+}
+table_map {
+  key: "hdr.packet_out.submit_to_ingress"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 1
+    }
+  }
+}
+table_map {
+  key: "hdr.tcp"
+  value {
+    header_descriptor {
+      type: P4_HEADER_TCP
+    }
+  }
+}
+table_map {
+  key: "hdr.tcp.ack_no"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 64
+      bit_width: 32
+      header_type: P4_HEADER_TCP
+    }
+  }
+}
+table_map {
+  key: "hdr.tcp.checksum"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 128
+      bit_width: 16
+      header_type: P4_HEADER_TCP
+    }
+  }
+}
+table_map {
+  key: "hdr.tcp.data_offset"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 96
+      bit_width: 4
+      header_type: P4_HEADER_TCP
+    }
+  }
+}
+table_map {
+  key: "hdr.tcp.dst_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_L4_DST_PORT
+      bit_offset: 16
+      bit_width: 16
+      header_type: P4_HEADER_TCP
+    }
+  }
+}
+table_map {
+  key: "hdr.tcp.flags"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 104
+      bit_width: 8
+      header_type: P4_HEADER_TCP
+    }
+  }
+}
+table_map {
+  key: "hdr.tcp.res"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 100
+      bit_width: 4
+      header_type: P4_HEADER_TCP
+    }
+  }
+}
+table_map {
+  key: "hdr.tcp.seq_no"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 32
+      bit_width: 32
+      header_type: P4_HEADER_TCP
+    }
+  }
+}
+table_map {
+  key: "hdr.tcp.src_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_L4_SRC_PORT
+      bit_width: 16
+      header_type: P4_HEADER_TCP
+    }
+  }
+}
+table_map {
+  key: "hdr.tcp.urgent_ptr"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 144
+      bit_width: 16
+      header_type: P4_HEADER_TCP
+    }
+  }
+}
+table_map {
+  key: "hdr.tcp.window"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 112
+      bit_width: 16
+      header_type: P4_HEADER_TCP
+    }
+  }
+}
+table_map {
+  key: "hdr.udp"
+  value {
+    header_descriptor {
+      type: P4_HEADER_UDP
+    }
+  }
+}
+table_map {
+  key: "hdr.udp.checksum"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 48
+      bit_width: 16
+      header_type: P4_HEADER_UDP
+    }
+  }
+}
+table_map {
+  key: "hdr.udp.dst_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_L4_DST_PORT
+      bit_offset: 16
+      bit_width: 16
+      header_type: P4_HEADER_UDP
+    }
+  }
+}
+table_map {
+  key: "hdr.udp.hdr_length"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 32
+      bit_width: 16
+      header_type: P4_HEADER_UDP
+    }
+  }
+}
+table_map {
+  key: "hdr.udp.src_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_L4_SRC_PORT
+      bit_width: 16
+      header_type: P4_HEADER_UDP
+    }
+  }
+}
+table_map {
+  key: "hdr.vlan_tag.last"
+  value {
+    header_descriptor {
+      type: P4_HEADER_VLAN
+    }
+  }
+}
+table_map {
+  key: "hdr.vlan_tag.last.cfi"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 3
+      bit_width: 1
+      header_type: P4_HEADER_VLAN
+    }
+  }
+}
+table_map {
+  key: "hdr.vlan_tag.last.ether_type"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ETH_TYPE
+      bit_offset: 16
+      bit_width: 16
+      header_type: P4_HEADER_VLAN
+    }
+  }
+}
+table_map {
+  key: "hdr.vlan_tag.last.pcp"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_VLAN_PCP
+      bit_width: 3
+      header_type: P4_HEADER_VLAN
+    }
+  }
+}
+table_map {
+  key: "hdr.vlan_tag.last.vid"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_VLAN_VID
+      bit_offset: 4
+      bit_width: 12
+      header_type: P4_HEADER_VLAN
+    }
+  }
+}
+table_map {
+  key: "hdr.vlan_tag[0]"
+  value {
+    header_descriptor {
+      type: P4_HEADER_VLAN
+    }
+  }
+}
+table_map {
+  key: "hdr.vlan_tag[0].cfi"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 3
+      bit_width: 1
+      header_type: P4_HEADER_VLAN
+    }
+  }
+}
+table_map {
+  key: "hdr.vlan_tag[0].ether_type"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ETH_TYPE
+      bit_offset: 16
+      bit_width: 16
+      header_type: P4_HEADER_VLAN
+    }
+  }
+}
+table_map {
+  key: "hdr.vlan_tag[0].pcp"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_VLAN_PCP
+      valid_conversions {
+        match_type: TERNARY
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_width: 3
+      header_type: P4_HEADER_VLAN
+    }
+  }
+}
+table_map {
+  key: "hdr.vlan_tag[0].vid"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_VLAN_VID
+      valid_conversions {
+        match_type: TERNARY
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_offset: 4
+      bit_width: 12
+      header_type: P4_HEADER_VLAN
+    }
+  }
+}
+table_map {
+  key: "hdr.vlan_tag[1]"
+  value {
+    header_descriptor {
+      type: P4_HEADER_VLAN
+    }
+  }
+}
+table_map {
+  key: "hdr.vlan_tag[1].cfi"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_offset: 3
+      bit_width: 1
+      header_type: P4_HEADER_VLAN
+    }
+  }
+}
+table_map {
+  key: "hdr.vlan_tag[1].ether_type"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ETH_TYPE
+      bit_offset: 16
+      bit_width: 16
+      header_type: P4_HEADER_VLAN
+    }
+  }
+}
+table_map {
+  key: "hdr.vlan_tag[1].pcp"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_VLAN_PCP
+      bit_width: 3
+      header_type: P4_HEADER_VLAN
+    }
+  }
+}
+table_map {
+  key: "hdr.vlan_tag[1].vid"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_VLAN_VID
+      bit_offset: 4
+      bit_width: 12
+      header_type: P4_HEADER_VLAN
+    }
+  }
+}
+table_map {
+  key: "ingress.l2_fwd.l2_unicast_table"
+  value {
+    table_descriptor {
+      type: P4_TABLE_L2_UNICAST
+      pipeline_stage: L2
+      internal_match_fields {
+        type: P4_FIELD_TYPE_VLAN_VID
+        value {
+          u32: 1
+        }
+      }
+    }
+  }
+}
+table_map {
+  key: "ingress.l2_fwd.set_egress_port"
+  value {
+    action_descriptor {
+      type: P4_ACTION_TYPE_FUNCTION
+      assignments {
+        assigned_value {
+          parameter_name: "port"
+        }
+        destination_field_name: "standard_metadata.egress_spec"
+      }
+    }
+  }
+}
+table_map {
+  key: "ingress.l3_fwd.decap_mpls"
+  value {
+    action_descriptor {
+      type: P4_ACTION_TYPE_FUNCTION
+      assignments {
+        assigned_value {
+          parameter_name: "port"
+        }
+        destination_field_name: "standard_metadata.egress_spec"
+      }
+      assignments {
+        assigned_value {
+          parameter_name: "smac"
+        }
+        destination_field_name: "hdr.ethernet.src_addr"
+      }
+      assignments {
+        assigned_value {
+          parameter_name: "dmac"
+        }
+        destination_field_name: "hdr.ethernet.dst_addr"
+      }
+      assignments {
+        assigned_value {
+          constant_param: 2048
+          bit_width: 16
+        }
+        destination_field_name: "hdr.ethernet.ether_type"
+      }
+      assignments {
+        assigned_value {
+          constant_param: 1
+        }
+        destination_field_name: "local_metadata.dst_vlan"
+      }
+      tunnel_properties {
+        is_mpls_tunnel: true
+        decap {
+          decap_inner_headers: P4_HEADER_IPV4
+          decap_inner_headers: P4_HEADER_IPV6
+        }
+      }
+    }
+  }
+}
+table_map {
+  key: "ingress.l3_fwd.drop"
+  value {
+    action_descriptor {
+      type: P4_ACTION_TYPE_FUNCTION
+      primitive_ops: P4_ACTION_OP_DROP
+    }
+  }
+}
+table_map {
+  key: "ingress.l3_fwd.encap_mpls"
+  value {
+    action_descriptor {
+      type: P4_ACTION_TYPE_FUNCTION
+      assignments {
+        assigned_value {
+          parameter_name: "port"
+        }
+        destination_field_name: "standard_metadata.egress_spec"
+      }
+      assignments {
+        assigned_value {
+          parameter_name: "smac"
+        }
+        destination_field_name: "hdr.ethernet.src_addr"
+      }
+      assignments {
+        assigned_value {
+          parameter_name: "dmac"
+        }
+        destination_field_name: "hdr.ethernet.dst_addr"
+      }
+      assignments {
+        assigned_value {
+          constant_param: 34887
+          bit_width: 16
+        }
+        destination_field_name: "hdr.ethernet.ether_type"
+      }
+      assignments {
+        assigned_value {
+          parameter_name: "mpls_label"
+        }
+        destination_field_name: "hdr.mpls.label"
+      }
+      assignments {
+        assigned_value {
+          parameter_name: "mpls_ttl"
+        }
+        destination_field_name: "hdr.mpls.ttl"
+      }
+      assignments {
+        assigned_value {
+          constant_param: 1
+          bit_width: 1
+        }
+        destination_field_name: "hdr.mpls.bos"
+      }
+      assignments {
+        assigned_value {
+          constant_param: 0
+          bit_width: 3
+        }
+        destination_field_name: "hdr.mpls.tc"
+      }
+      assignments {
+        assigned_value {
+          constant_param: 333
+          bit_width: 20
+        }
+        destination_field_name: "hdr.inner_mpls.label"
+      }
+      assignments {
+        assigned_value {
+          constant_param: 66
+          bit_width: 8
+        }
+        destination_field_name: "hdr.inner_mpls.ttl"
+      }
+      assignments {
+        assigned_value {
+          constant_param: 0
+          bit_width: 1
+        }
+        destination_field_name: "hdr.inner_mpls.bos"
+      }
+      assignments {
+        assigned_value {
+          constant_param: 1
+          bit_width: 3
+        }
+        destination_field_name: "hdr.inner_mpls.tc"
+      }
+      tunnel_properties {
+        is_mpls_tunnel: true
+        encap {
+          encap_inner_headers: P4_HEADER_IPV4
+          encap_inner_headers: P4_HEADER_IPV6
+          encap_outer_header: P4_HEADER_MPLS
+        }
+      }
+    }
+  }
+}
+table_map {
+  key: "ingress.l3_fwd.l3_fwd_table"
+  value {
+    table_descriptor {
+      type: P4_TABLE_L3_IP
+      pipeline_stage: L3_LPM
+      valid_headers: P4_HEADER_IPV4
+    }
+  }
+}
+table_map {
+  key: "ingress.l3_fwd.l3_mpls_table"
+  value {
+    table_descriptor {
+      type: P4_TABLE_MPLS
+      pipeline_stage: L3_MPLS
+      valid_headers: P4_HEADER_MPLS
+    }
+  }
+}
+table_map {
+  key: "ingress.l3_fwd.set_nexthop"
+  value {
+    action_descriptor {
+      type: P4_ACTION_TYPE_FUNCTION
+      assignments {
+        assigned_value {
+          parameter_name: "port"
+        }
+        destination_field_name: "standard_metadata.egress_spec"
+      }
+      assignments {
+        assigned_value {
+          parameter_name: "dst_vlan"
+        }
+        destination_field_name: "local_metadata.dst_vlan"
+      }
+      assignments {
+        assigned_value {
+          parameter_name: "smac"
+        }
+        destination_field_name: "hdr.ethernet.src_addr"
+      }
+      assignments {
+        assigned_value {
+          parameter_name: "dmac"
+        }
+        destination_field_name: "hdr.ethernet.dst_addr"
+      }
+    }
+  }
+}
+table_map {
+  key: "ingress.l3_fwd.swap_mpls"
+  value {
+    action_descriptor {
+      type: P4_ACTION_TYPE_FUNCTION
+      assignments {
+        assigned_value {
+          parameter_name: "port"
+        }
+        destination_field_name: "standard_metadata.egress_spec"
+      }
+      assignments {
+        assigned_value {
+          parameter_name: "smac"
+        }
+        destination_field_name: "hdr.ethernet.src_addr"
+      }
+      assignments {
+        assigned_value {
+          parameter_name: "dmac"
+        }
+        destination_field_name: "hdr.ethernet.dst_addr"
+      }
+      assignments {
+        assigned_value {
+          parameter_name: "mpls_label"
+        }
+        destination_field_name: "hdr.mpls.label"
+      }
+      assignments {
+        assigned_value {
+          constant_param: 1
+        }
+        destination_field_name: "local_metadata.dst_vlan"
+      }
+    }
+  }
+}
+table_map {
+  key: "ingress.my_station_table"
+  value {
+    table_descriptor {
+      type: P4_TABLE_L2_MY_STATION
+      pipeline_stage: L2
+    }
+  }
+}
+table_map {
+  key: "ingress.punt.punt_table"
+  value {
+    table_descriptor {
+      pipeline_stage: INGRESS_ACL
+    }
+  }
+}
+table_map {
+  key: "ingress.punt.set_egress_port"
+  value {
+    action_descriptor {
+      type: P4_ACTION_TYPE_FUNCTION
+      assignments {
+        assigned_value {
+          source_field_name: "standard_metadata.egress_spec"
+        }
+        destination_field_name: "local_metadata.egress_spec_at_punt_match"
+      }
+      assignments {
+        assigned_value {
+          parameter_name: "port"
+        }
+        destination_field_name: "standard_metadata.egress_spec"
+      }
+    }
+  }
+}
+table_map {
+  key: "ingress.punt.set_queue_and_clone_to_cpu"
+  value {
+    action_descriptor {
+      type: P4_ACTION_TYPE_FUNCTION
+      assignments {
+        assigned_value {
+          parameter_name: "queue_id"
+        }
+        destination_field_name: "local_metadata.cpu_cos_queue_id"
+      }
+      assignments {
+        assigned_value {
+          source_field_name: "standard_metadata.egress_spec"
+        }
+        destination_field_name: "local_metadata.egress_spec_at_punt_match"
+      }
+    }
+  }
+}
+table_map {
+  key: "ingress.punt.set_queue_and_send_to_cpu"
+  value {
+    action_descriptor {
+      type: P4_ACTION_TYPE_FUNCTION
+      assignments {
+        assigned_value {
+          parameter_name: "queue_id"
+        }
+        destination_field_name: "local_metadata.cpu_cos_queue_id"
+      }
+      assignments {
+        assigned_value {
+          source_field_name: "standard_metadata.egress_spec"
+        }
+        destination_field_name: "local_metadata.egress_spec_at_punt_match"
+      }
+      assignments {
+        assigned_value {
+          constant_param: 253
+          bit_width: 9
+        }
+        destination_field_name: "standard_metadata.egress_spec"
+      }
+    }
+  }
+}
+table_map {
+  key: "ingress.set_l3_admit"
+  value {
+    action_descriptor {
+      type: P4_ACTION_TYPE_FUNCTION
+      assignments {
+        assigned_value {
+          constant_param: 1
+          bit_width: 1
+        }
+        destination_field_name: "local_metadata.l3_admit"
+      }
+    }
+  }
+}
+table_map {
+  key: "local_metadata"
+  value {
+    header_descriptor {
+    }
+  }
+}
+table_map {
+  key: "local_metadata.class_id"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_CLASS_ID
+      valid_conversions {
+        match_type: TERNARY
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_width: 8
+      is_local_metadata: true
+      metadata_keys {
+        table_name: "ingress.punt.punt_table"
+      }
+    }
+  }
+}
+table_map {
+  key: "local_metadata.color"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_COLOR
+      bit_width: 2
+      is_local_metadata: true
+    }
+  }
+}
+table_map {
+  key: "local_metadata.cpu_cos_queue_id"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_CPU_QUEUE_ID
+      bit_width: 5
+      is_local_metadata: true
+    }
+  }
+}
+table_map {
+  key: "local_metadata.dst_vlan"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_VLAN_VID
+      bit_width: 12
+      is_local_metadata: true
+    }
+  }
+}
+table_map {
+  key: "local_metadata.egress_spec_at_punt_match"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_EGRESS_PORT
+      bit_width: 9
+      is_local_metadata: true
+    }
+  }
+}
+table_map {
+  key: "local_metadata.icmp_code"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      valid_conversions {
+        match_type: TERNARY
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_width: 8
+      is_local_metadata: true
+      metadata_keys {
+        table_name: "ingress.punt.punt_table"
+      }
+    }
+  }
+}
+table_map {
+  key: "local_metadata.l3_admit"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_L3_ADMIT
+      bit_width: 1
+      is_local_metadata: true
+    }
+  }
+}
+table_map {
+  key: "local_metadata.l4_dst_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_L4_DST_PORT
+      valid_conversions {
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_width: 16
+      is_local_metadata: true
+    }
+  }
+}
+table_map {
+  key: "local_metadata.l4_src_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_L4_SRC_PORT
+      valid_conversions {
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_width: 16
+      is_local_metadata: true
+    }
+  }
+}
+table_map {
+  key: "local_metadata.skip_egress"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 1
+      is_local_metadata: true
+    }
+  }
+}
+table_map {
+  key: "local_metadata.vrf_id"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_VRF
+      valid_conversions {
+        match_type: EXACT
+        conversion: P4_CONVERT_TO_U32
+      }
+      valid_conversions {
+        match_type: TERNARY
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_width: 10
+      is_local_metadata: true
+      metadata_keys {
+        table_name: "ingress.l3_fwd.l3_fwd_table"
+      }
+      metadata_keys {
+        table_name: "ingress.punt.punt_table"
+      }
+    }
+  }
+}
+table_map {
+  key: "nop"
+  value {
+    action_descriptor {
+      type: P4_ACTION_TYPE_FUNCTION
+      primitive_ops: P4_ACTION_OP_NOP
+    }
+  }
+}
+table_map {
+  key: "packet_in"
+  value {
+    header_descriptor {
+    }
+  }
+}
+table_map {
+  key: "packet_in.ingress_logical_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 32
+    }
+  }
+}
+table_map {
+  key: "packet_in.ingress_physical_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_INGRESS_PORT
+      bit_width: 9
+    }
+  }
+}
+table_map {
+  key: "packet_in.padding1"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 7
+    }
+  }
+}
+table_map {
+  key: "packet_in.padding2"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 7
+    }
+  }
+}
+table_map {
+  key: "packet_in.target_egress_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_EGRESS_PORT
+      bit_width: 9
+    }
+  }
+}
+table_map {
+  key: "packet_out"
+  value {
+    header_descriptor {
+    }
+  }
+}
+table_map {
+  key: "packet_out.egress_physical_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_EGRESS_PORT
+      bit_width: 9
+    }
+  }
+}
+table_map {
+  key: "packet_out.padding"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 6
+    }
+  }
+}
+table_map {
+  key: "packet_out.submit_to_ingress"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 1
+    }
+  }
+}
+table_map {
+  key: "standard_metadata"
+  value {
+    header_descriptor {
+    }
+  }
+}
+table_map {
+  key: "standard_metadata.checksum_error"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 1
+    }
+  }
+}
+table_map {
+  key: "standard_metadata.deq_qdepth"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 19
+    }
+  }
+}
+table_map {
+  key: "standard_metadata.deq_timedelta"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 32
+    }
+  }
+}
+table_map {
+  key: "standard_metadata.egress_global_timestamp"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 48
+    }
+  }
+}
+table_map {
+  key: "standard_metadata.egress_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_EGRESS_PORT
+      bit_width: 9
+    }
+  }
+}
+table_map {
+  key: "standard_metadata.egress_rid"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 16
+    }
+  }
+}
+table_map {
+  key: "standard_metadata.egress_spec"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_EGRESS_PORT
+      valid_conversions {
+        match_type: TERNARY
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_width: 9
+    }
+  }
+}
+table_map {
+  key: "standard_metadata.enq_qdepth"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 19
+    }
+  }
+}
+table_map {
+  key: "standard_metadata.enq_timestamp"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 32
+    }
+  }
+}
+table_map {
+  key: "standard_metadata.ingress_global_timestamp"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 48
+    }
+  }
+}
+table_map {
+  key: "standard_metadata.ingress_port"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_INGRESS_PORT
+      valid_conversions {
+        match_type: EXACT
+        conversion: P4_CONVERT_TO_U32
+      }
+      valid_conversions {
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      valid_conversions {
+        match_type: TERNARY
+        conversion: P4_CONVERT_TO_U32_AND_MASK
+      }
+      bit_width: 9
+    }
+  }
+}
+table_map {
+  key: "standard_metadata.instance_type"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 32
+    }
+  }
+}
+table_map {
+  key: "standard_metadata.mcast_grp"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_MCAST_GROUP_ID
+      bit_width: 16
+    }
+  }
+}
+table_map {
+  key: "standard_metadata.packet_length"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 32
+    }
+  }
+}
+table_map {
+  key: "standard_metadata.priority"
+  value {
+    field_descriptor {
+      type: P4_FIELD_TYPE_ANNOTATED
+      bit_width: 3
+    }
+  }
+}
+p4_controls {
+  name: "pkt_deparser"
+  main {
+    statements {
+      other: "extern method packet_out"
+    }
+    statements {
+      other: "extern method packet_out"
+    }
+    statements {
+      other: "extern method packet_out"
+    }
+    statements {
+      other: "extern method packet_out"
+    }
+    statements {
+      other: "extern method packet_out"
+    }
+    statements {
+      other: "extern method packet_out"
+    }
+    statements {
+      other: "extern method packet_out"
+    }
+    statements {
+      other: "extern method packet_out"
+    }
+    statements {
+      other: "extern method packet_out"
+    }
+    statements {
+      other: "extern method packet_out"
+    }
+    statements {
+      other: "extern method packet_out"
+    }
+  }
+}
+p4_controls {
+  name: "verify_ipv4_checksum"
+  main {
+    statements {
+      other: "MethodCallExpression extern function verify_checksum"
+    }
+  }
+}
+p4_controls {
+  name: "compute_ipv4_checksum"
+  main {
+    statements {
+      other: "MethodCallExpression extern function update_checksum"
+    }
+  }
+}
+p4_controls {
+  name: "ingress"
+  type: P4_CONTROL_INGRESS
+  main {
+    statements {
+      branch {
+        condition {
+          is_valid {
+            header_name: "hdr.packet_out"
+          }
+        }
+        true_block {
+          statements {
+            other: "Assignment statement"
+          }
+          statements {
+            other: "built-in method setInvalid"
+          }
+        }
+      }
+    }
+    statements {
+      fixed_pipeline {
+        pipeline_stage: L2
+        tables {
+          table_name: "ingress.my_station_table"
+          table_id: 33573106
+          pipeline_stage: L2
+        }
+        tables {
+          table_name: "ingress.l3_fwd.l3_mpls_table"
+          table_id: 33556346
+          pipeline_stage: L3_MPLS
+        }
+        tables {
+          table_name: "ingress.l3_fwd.l3_fwd_table"
+          table_id: 33572104
+          pipeline_stage: L3_LPM
+        }
+        tables {
+          table_name: "ingress.l2_fwd.l2_unicast_table"
+          table_id: 33582129
+          pipeline_stage: L2
+        }
+      }
+    }
+    statements {
+      apply {
+        table_name: "ingress.punt.punt_table"
+        table_id: 33598026
+        pipeline_stage: INGRESS_ACL
+      }
+    }
+  }
+}
+p4_controls {
+  name: "egress"
+  type: P4_CONTROL_EGRESS
+  main {
+    statements {
+      branch {
+        condition {
+          unknown: "standard_metadata.egress_port == 0xfd"
+        }
+        true_block {
+          statements {
+            other: "built-in method setValid"
+          }
+          statements {
+            other: "Assignment statement"
+          }
+          statements {
+            other: "Assignment statement"
+          }
+          statements {
+            exit: true
+          }
+        }
+      }
+    }
+  }
+}
+idle_pipeline_stages: VLAN_ACL
+idle_pipeline_stages: EGRESS_ACL
+idle_pipeline_stages: ENCAP
+idle_pipeline_stages: DECAP
+idle_pipeline_stages: HIDDEN
+static_table_entries {
+}

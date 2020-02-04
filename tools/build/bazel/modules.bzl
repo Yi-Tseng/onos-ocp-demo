@@ -329,6 +329,7 @@ APP_MAP = {
 PIPELINE_MAP = {
     "//pipelines/basic:onos-pipelines-basic-oar": ["stratum"],
     "//pipelines/fabric:onos-pipelines-fabric-oar": ["stratum"],
+    "//pipelines/stratum-bcm:onos-pipelines-stratum-bcm-oar": ["stratum"],
 }
 
 MODELS_MAP = {
