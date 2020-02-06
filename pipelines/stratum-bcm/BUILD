@@ -9,7 +9,9 @@ COMPILE_DEPS = CORE_DEPS + [
     "//drivers/odtn-driver:onos-drivers-odtn-driver",
     "//drivers/p4runtime:onos-drivers-p4runtime",
     "//drivers/gnmi:onos-drivers-gnmi",
+    "//drivers/stratum:onos-drivers-stratum",
     "//apps/odtn/api:onos-apps-odtn-api",
+    "//apps/optical-model:onos-apps-optical-model-native",
 ]
 
 osgi_jar(
