@@ -138,13 +138,12 @@ public class GnmiOdtnFlowRuleProgrammable
         // gNMI set
         // /components/component[name=optChannel]/optical-channel/config/frequency
         // value: (long) freq.asMHz()
-
-        Gnmi.Path path = Gnmi.Path.newBuilder()
-                .addElem(Gnmi.PathElem.newBuilder().setName("components").build())
-                .addElem(Gnmi.PathElem.newBuilder().setName("component").putKey("name", optChannel).build())
-                .addElem(Gnmi.PathElem.newBuilder().setName("optical-channel").build())
-                .addElem(Gnmi.PathElem.newBuilder().setName("config").build())
-                .addElem(Gnmi.PathElem.newBuilder().setName("frequency").build())
+        Gnmi.Path path = GnmiPathBuilder.newBuilder()
+                .addElem("components")
+                .addElem("component").withKeyValue("name", optChannel)
+                .addElem("optical-channel")
+                .addElem("config")
+                .addElem("frequency")
                 .build();
         Gnmi.TypedValue val = Gnmi.TypedValue.newBuilder()
                 .setUintVal(megaHertz)

@@ -10,13 +10,21 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import org.onosproject.core.ApplicationId;
 import org.onosproject.core.CoreService;
+import org.onosproject.drivers.odtn.openconfig.TerminalDeviceLambdaQuery;
+import org.onosproject.net.behaviour.LambdaQuery;
+import org.onosproject.net.behaviour.ModulationConfig;
 import org.onosproject.net.behaviour.Pipeliner;
+import org.onosproject.net.behaviour.PowerConfig;
+import org.onosproject.net.device.DeviceDescriptionDiscovery;
 import org.onosproject.net.flow.FlowRuleProgrammable;
 import org.onosproject.net.pi.model.*;
 import org.onosproject.net.pi.service.PiPipeconfService;
 import org.onosproject.p4runtime.model.P4InfoParser;
 import org.onosproject.p4runtime.model.P4InfoParserException;
+import org.onosproject.stratum.StratumModulationConfig;
+import org.onosproject.stratum.StratumOdtnDeviceDiscovery;
 import org.onosproject.stratum.StratumOdtnFlowRuleProgrammable;
+import org.onosproject.stratum.StratumOdtnPowerConfig;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
@@ -138,7 +146,12 @@ public class PipeconfLoader {
 
     private PiPipeconf fpmOdtnPipeconf() throws FileNotFoundException {
         return baseFpmPipeconf()
+                .withId(new PiPipeconfId(PIPELINE_APP_NAME + ".fpm-odtn"))
                 .addBehaviour(FlowRuleProgrammable.class, StratumOdtnFlowRuleProgrammable.class)
+                .addBehaviour(LambdaQuery.class, TerminalDeviceLambdaQuery.class)
+                .addBehaviour(DeviceDescriptionDiscovery.class, StratumOdtnDeviceDiscovery.class)
+                .addBehaviour(ModulationConfig.class, StratumModulationConfig.class)
+                .addBehaviour(PowerConfig.class, StratumOdtnPowerConfig.class)
                 .build();
     }
 
