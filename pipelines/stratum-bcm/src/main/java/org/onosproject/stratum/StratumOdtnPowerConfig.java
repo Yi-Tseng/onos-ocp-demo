@@ -106,6 +106,7 @@ public class StratumOdtnPowerConfig<T>
     private Optional<Double> getValueFromPath(String ocName, String subPath) {
         Gnmi.GetRequest req = Gnmi.GetRequest.newBuilder()
                 .addPath(buildPathWithSubPath(ocName, subPath))
+                .setEncoding(Gnmi.Encoding.PROTO)
                 .build();
         try {
             Gnmi.GetResponse resp = client.get(req).get();

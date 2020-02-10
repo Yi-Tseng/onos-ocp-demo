@@ -10,11 +10,14 @@ import org.onosproject.net.*;
 import org.onosproject.net.device.PortDescription;
 import org.onosproject.net.optical.device.OchPortHelper;
 import org.onosproject.odtn.behaviour.OdtnDeviceDescriptionDiscovery;
+import org.onosproject.store.primitives.DefaultAtomicIdGenerator;
+import org.onosproject.store.service.AtomicIdGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,6 +33,7 @@ public class GnmiOdtnDeviceDiscovery
         implements OdtnDeviceDescriptionDiscovery {
 
     private static final Logger log = LoggerFactory.getLogger(GnmiOdtnDeviceDiscovery.class);
+    private static AtomicLong portIndexGenerator = new AtomicLong(1L);
 
     @Override
     public List<PortDescription> discoverPortDetails() {
@@ -44,6 +48,7 @@ public class GnmiOdtnDeviceDiscovery
 
         Gnmi.GetRequest req = Gnmi.GetRequest.newBuilder()
                 .addPath(path)
+                .setEncoding(Gnmi.Encoding.PROTO)
                 .build();
         Gnmi.GetResponse resp;
         try {
@@ -100,7 +105,7 @@ public class GnmiOdtnDeviceDiscovery
                 pathValue.get("/components/component/state/type");
 
         if (componentType == null ||
-                componentType.getStringVal().equals("OPTICAL_CHANNEL")) {
+                !componentType.getStringVal().equals("OPTICAL_CHANNEL")) {
             // Invalid component
             return null;
         }
@@ -117,19 +122,23 @@ public class GnmiOdtnDeviceDiscovery
         }
 
         String linePortString = linePort.getStringVal();
-        String portIndex = "0";
+        Long portIndex = 0L;
         if (linePortString.contains("-") && !linePortString.endsWith("-")) {
-            portIndex = linePortString.split("-")[1];
+            try {
+                portIndex = Long.parseUnsignedLong(linePortString.split("-")[1]);
+            } catch (NumberFormatException e) {
+                portIndex = portIndexGenerator.getAndIncrement();
+            }
         }
 
         annotations.put(AnnotationKeys.PORT_NAME, linePortString);
         annotations.putIfAbsent(PORT_TYPE, OdtnDeviceDescriptionDiscovery.OdtnPortType.LINE.value());
-        annotations.putIfAbsent(ONOS_PORT_INDEX, portIndex);
+        annotations.putIfAbsent(ONOS_PORT_INDEX, portIndex.toString());
         annotations.putIfAbsent(CONNECTION_ID, "connection-" + portIndex);
 
         OchSignal signalId = OchSignal.newDwdmSlot(ChannelSpacing.CHL_50GHZ, 1);
         return OchPortHelper.ochPortDescription(
-                PortNumber.portNumber(Long.parseLong(portIndex)),
+                PortNumber.portNumber(portIndex, linePortString),
                 true,
                 OduSignalType.ODU4, // TODO Client signal to be discovered
                 true,
