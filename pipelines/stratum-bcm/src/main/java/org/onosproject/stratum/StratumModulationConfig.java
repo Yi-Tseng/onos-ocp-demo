@@ -58,6 +58,7 @@ public class StratumModulationConfig<T>
 
         Gnmi.GetRequest req = Gnmi.GetRequest.newBuilder()
                 .addPath(path)
+                .setEncoding(Gnmi.Encoding.PROTO)
                 .build();
 
         Gnmi.GetResponse resp;
