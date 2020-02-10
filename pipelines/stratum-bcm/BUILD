@@ -24,6 +24,8 @@ onos_app(
     description = "",
     required_apps = [
         "org.onosproject.drivers.p4runtime",
+        "org.onosproject.drivers.odtn-driver",
+        "org.onosproject.drivers.stratum",
     ],
     title = "Stratum BCM Pipelines",
     url = "http://onosproject.org",
