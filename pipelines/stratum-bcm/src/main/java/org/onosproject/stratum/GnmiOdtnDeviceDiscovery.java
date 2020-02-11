@@ -10,8 +10,6 @@ import org.onosproject.net.*;
 import org.onosproject.net.device.PortDescription;
 import org.onosproject.net.optical.device.OchPortHelper;
 import org.onosproject.odtn.behaviour.OdtnDeviceDescriptionDiscovery;
-import org.onosproject.store.primitives.DefaultAtomicIdGenerator;
-import org.onosproject.store.service.AtomicIdGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -128,6 +126,7 @@ public class GnmiOdtnDeviceDiscovery
                 portIndex = Long.parseUnsignedLong(linePortString.split("-")[1]);
             } catch (NumberFormatException e) {
                 portIndex = portIndexGenerator.getAndIncrement();
+                log.warn("Invalid line port string: {}, use {}", linePortString, portIndex);
             }
         }
 
@@ -149,8 +148,8 @@ public class GnmiOdtnDeviceDiscovery
     /**
      * From a Gnmi.Path (list of elements) to human readable path
      * without additional key values of elements.
-     * @param path
-     * @return
+     * @param path a gNMI path message
+     * @return a readable path string
      */
     private String toReadablePath(Gnmi.Path path) {
         StringBuilder builder = new StringBuilder();
@@ -165,6 +164,11 @@ public class GnmiOdtnDeviceDiscovery
 //                builder.append(String.join(",", kvList));
 //                builder.append("]");
 //            }
+        }
+
+        if (builder.length() == 0) {
+            // Root path
+            builder.append("/");
         }
 
         return builder.toString();
