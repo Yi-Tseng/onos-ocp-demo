@@ -137,7 +137,7 @@ public class GnmiOdtnDeviceDiscovery
 
         OchSignal signalId = OchSignal.newDwdmSlot(ChannelSpacing.CHL_50GHZ, 1);
         return OchPortHelper.ochPortDescription(
-                PortNumber.portNumber(portIndex, linePortString),
+                PortNumber.portNumber(portIndex, name),
                 true,
                 OduSignalType.ODU4, // TODO Client signal to be discovered
                 true,
