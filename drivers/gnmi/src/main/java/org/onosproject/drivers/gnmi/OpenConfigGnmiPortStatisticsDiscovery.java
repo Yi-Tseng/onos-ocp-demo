@@ -70,14 +70,14 @@ public class OpenConfigGnmiPortStatisticsDiscovery
         // Use this path to get all counters from specific interface(port)
         // /interfaces/interface[port-name]/state/counters/[counter name]
         ports.forEach(port -> {
+            String portName = port.number().name();
+            ifacePortNumberMapping.put(portName, port.number());
             if (port.type() != Port.Type.COPPER) {
                 // Ignore ports that we don't supported
                 return;
             }
-            String portName = port.number().name();
             Path path = interfaceCounterPath(portName);
             getRequest.addPath(path);
-            ifacePortNumberMapping.put(portName, port.number());
         });
 
         GetResponse getResponse = Futures.getUnchecked(client.get(getRequest.build()));
