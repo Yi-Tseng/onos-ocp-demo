@@ -18,16 +18,19 @@
 
 package org.onosproject.stratum;
 
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Range;
 import gnmi.Gnmi;
 import org.onosproject.gnmi.api.GnmiClient;
 import org.onosproject.gnmi.api.GnmiController;
 import org.onosproject.grpc.utils.AbstractGrpcHandlerBehaviour;
+import org.onosproject.net.Port;
 import org.onosproject.net.PortNumber;
 import org.onosproject.net.behaviour.PowerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
@@ -40,6 +43,12 @@ public class StratumOdtnPowerConfig<T>
 
     private static final Logger log = LoggerFactory.getLogger(StratumOdtnPowerConfig.class);
     private static final int DEFAULT_OC_POWER_PRECISION = 2;
+    private static final Collection<Port.Type> OPTICAL_TYPES = ImmutableSet.of(Port.Type.FIBER,
+                    Port.Type.PACKET,
+                    Port.Type.ODUCLT,
+                    Port.Type.OCH,
+                    Port.Type.OMS,
+                    Port.Type.OTU);
 
     public StratumOdtnPowerConfig() {
         super(GnmiController.class);
@@ -48,6 +57,9 @@ public class StratumOdtnPowerConfig<T>
     @Override
     public Optional<Double> getTargetPower(PortNumber port, T component) {
         if(!setupBehaviour("getTargetPower")) {
+            return Optional.empty();
+        }
+        if (!isOpticalPort(port)) {
             return Optional.empty();
         }
         // path: /components/component[name=<name>]/optical-channel/config/target-output-power
@@ -59,6 +71,9 @@ public class StratumOdtnPowerConfig<T>
         if(!setupBehaviour("setTargetPower")) {
             return;
         }
+        if (!isOpticalPort(port)) {
+            return;
+        }
         setValueToPath(getOcName(port), "config/target-output-power", power);
     }
 
@@ -67,8 +82,10 @@ public class StratumOdtnPowerConfig<T>
         if(!setupBehaviour("currentPower")) {
             return Optional.empty();
         }
+        if (!isOpticalPort(port)) {
+            return Optional.empty();
+        }
         // path: /components/component[name=<name>]/optical-channel/state/output-power/instant
-
         return getValueFromPath(getOcName(port), "state/output-power/instant");
     }
 
@@ -77,13 +94,18 @@ public class StratumOdtnPowerConfig<T>
         if(!setupBehaviour("currentInputPower")) {
             return Optional.empty();
         }
+        if (!isOpticalPort(port)) {
+            return Optional.empty();
+        }
         // path: /components/component[name=<name>]/optical-channel/state/input-power/instant
-
         return getValueFromPath(getOcName(port), "state/input-power/instant");
     }
 
     @Override
     public Optional<Range<Double>> getTargetPowerRange(PortNumber port, Object component) {
+        if (!isOpticalPort(port)) {
+            return Optional.empty();
+        }
         double targetMin = -30;
         double targetMax = 1;
         return Optional.of(Range.open(targetMin, targetMax));
@@ -91,6 +113,9 @@ public class StratumOdtnPowerConfig<T>
 
     @Override
     public Optional<Range<Double>> getInputPowerRange(PortNumber port, Object component) {
+        if (!isOpticalPort(port)) {
+            return Optional.empty();
+        }
         double targetMin = -30;
         double targetMax = 1;
         return Optional.of(Range.open(targetMin, targetMax));
@@ -101,6 +126,13 @@ public class StratumOdtnPowerConfig<T>
             return null;
         }
         return deviceService.getPort(deviceId, portNumber).annotations().value("oc-name");
+    }
+
+    private boolean isOpticalPort(PortNumber portNumber) {
+        if (!setupBehaviour("getOcName")) {
+            return false;
+        }
+        return OPTICAL_TYPES.contains(deviceService.getPort(deviceId, portNumber).type());
     }
 
     private Optional<Double> getValueFromPath(String ocName, String subPath) {
