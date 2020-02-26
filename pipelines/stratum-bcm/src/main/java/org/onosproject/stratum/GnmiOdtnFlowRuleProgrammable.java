@@ -89,7 +89,7 @@ public class GnmiOdtnFlowRuleProgrammable
 
     private String applyFlowRule(FlowRule r) {
         FlowRuleParser frp = new FlowRuleParser(r);
-        if (!frp.isReceiver()) {
+//        if (!frp.isReceiver()) {
             String optChannel = getOpticalChannel(frp.getPortNumber());
             if (optChannel == null) {
                 log.warn("[Apply] No optical channel found from port {}, skipped", frp.getPortNumber());
@@ -100,8 +100,8 @@ public class GnmiOdtnFlowRuleProgrammable
                 return null;
             }
             return optChannel + ":" + frp.getCentralFrequency().asGHz();
-        }
-        return String.valueOf(frp.getCentralFrequency().asGHz());
+//        }
+//        return String.valueOf(frp.getCentralFrequency().asGHz());
     }
 
     private String removeFlowRule(FlowRule r) {

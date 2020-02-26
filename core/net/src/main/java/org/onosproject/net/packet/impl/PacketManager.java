@@ -326,7 +326,8 @@ public class PacketManager
      * @param request the packet request
      */
     private void pushRule(Device device, PacketRequest request) {
-        if (!device.type().equals(Device.Type.SWITCH)) {
+        if (!device.type().equals(Device.Type.SWITCH)
+            && !device.type().equals(Device.Type.TERMINAL_DEVICE)) {
             return;
         }
 
