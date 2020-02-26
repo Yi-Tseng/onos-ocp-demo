@@ -193,8 +193,7 @@ public class LldpLinkProvider extends AbstractProvider implements ProbedLinkProv
                                           Device.Type.FIBER_SWITCH,
                                           Device.Type.OPTICAL_AMPLIFIER,
                                           Device.Type.OTN,
-                                          Device.Type.OLS,
-                                          Device.Type.TERMINAL_DEVICE),
+                                          Device.Type.OLS),
                                ImmutableMap.of(NO_LLDP, SuppressionRules.ANY_VALUE));
 
     private SuppressionRules rules = LldpLinkProvider.DEFAULT_RULES;
