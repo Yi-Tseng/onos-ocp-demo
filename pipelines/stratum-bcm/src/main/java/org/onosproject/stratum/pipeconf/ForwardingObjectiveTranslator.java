@@ -196,7 +196,7 @@ public class ForwardingObjectiveTranslator extends AbstractObjectiveTranslator<F
         // One flow per MPLS label + input port
         for (Port inPort : devicePorts) {
             if (inPort.type() != Port.Type.COPPER) {
-                log.debug("Ignore non-copper ports");
+                log.debug("Ignore non-copper port {}", inPort);
                 continue;
             }
             TrafficSelector selector = DefaultTrafficSelector.builder()
