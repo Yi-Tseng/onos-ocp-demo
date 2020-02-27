@@ -52,6 +52,7 @@ import static org.onosproject.net.flow.instructions.L2ModificationInstruction.L2
 import static org.onosproject.net.pi.model.PiPacketOperationType.PACKET_OUT;
 import static org.onosproject.stratum.pipeconf.BcmPipelineConstants.*;
 import static org.onosproject.stratum.pipeconf.BcmPipelineUtils.l2Instruction;
+import static org.onosproject.stratum.pipeconf.BcmPipelineUtils.outputPort;
 
 public class BcmPipelineInterpreter extends AbstractHandlerBehaviour implements PiPipelineInterpreter {
 
@@ -72,6 +73,8 @@ public class BcmPipelineInterpreter extends AbstractHandlerBehaviour implements 
                     .put(Criterion.Type.MPLS_LABEL, HDR_MPLS_LABEL)
             .build();
     private BcmPipelineCapabilities capabilities;
+    private DeviceService deviceService;
+    private DeviceId deviceId;
 
     public BcmPipelineInterpreter() {
     }
@@ -80,10 +83,12 @@ public class BcmPipelineInterpreter extends AbstractHandlerBehaviour implements 
     public void setHandler(DriverHandler handler) {
         super.setHandler(handler);
         final PiPipeconfService pipeconfService = handler().get(PiPipeconfService.class);
-        DeviceId deviceId = handler().data().deviceId();
+        this.deviceId = handler().data().deviceId();
         this.capabilities = pipeconfService.getPipeconf(deviceId)
             .map(BcmPipelineCapabilities::new)
             .orElse(null);
+        this.deviceService = handler().get(DeviceService.class);
+
     }
 
     public BcmPipelineInterpreter(BcmPipelineCapabilities capabilities) {
@@ -230,6 +235,15 @@ public class BcmPipelineInterpreter extends AbstractHandlerBehaviour implements 
                     builder.add(buildPacketOut(packet.data(), port.number().toLong()));
                 }
             } else {
+                PortNumber outPortNumber = outInst.port();
+                Port outPort = deviceService.getPort(deviceId, outPortNumber);
+
+                if (outPort.type() != Port.Type.COPPER) {
+                    // Ignore non-copper ports
+                    log.debug("Ignore non-copper port {}", outPort);
+                    continue;
+                }
+
                 // Create only one packet-out for the given OUTPUT instruction.
                 builder.add(buildPacketOut(packet.data(), outInst.port().toLong()));
             }
