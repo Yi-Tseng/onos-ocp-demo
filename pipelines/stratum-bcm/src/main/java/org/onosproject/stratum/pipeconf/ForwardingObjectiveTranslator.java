@@ -192,24 +192,15 @@ public class ForwardingObjectiveTranslator extends AbstractObjectiveTranslator<F
         checkNotNull(mplsCriterion);
 
         TrafficTreatment treatment = actionProfileGroupTreatmentFromNextId(obj.nextId());
-
-        // One flow per MPLS label + input port
-        for (Port inPort : devicePorts) {
-            if (inPort.type() != Port.Type.COPPER) {
-                log.debug("Ignore non-copper port {}", inPort);
-                continue;
-            }
-            TrafficSelector selector = DefaultTrafficSelector.builder()
-                .matchInPort(inPort.number())
+        TrafficSelector selector = DefaultTrafficSelector.builder()
                 .matchMplsLabel(mplsCriterion.label())
                 .build();
-            resultBuilder.addFlowRule(flowRule(
-                    obj,
-                    L3_MPLS_TABLE,
-                    selector,
-                    treatment
-            ));
-        }
+        resultBuilder.addFlowRule(flowRule(
+                obj,
+                L3_MPLS_TABLE,
+                selector,
+                treatment
+        ));
     }
 
     private TrafficTreatment actionProfileGroupTreatmentFromNextId(int nextId) {
