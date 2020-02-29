@@ -45,12 +45,6 @@ tables {
   }
   match_fields {
     id: 1
-    name: "standard_metadata.ingress_port"
-    bitwidth: 9
-    match_type: EXACT
-  }
-  match_fields {
-    id: 2
     name: "hdr.mpls.label"
     bitwidth: 20
     match_type: EXACT

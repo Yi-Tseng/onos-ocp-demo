@@ -105,17 +105,6 @@ public class BcmPipeliner extends AbstractHandlerBehaviour implements Pipeliner 
         handleResult(obj, result);
     }
 
-/*
-__   _____ _       _____ ___  ____   ___
-\ \ / /_ _( )___  |_   _/ _ \|  _ \ / _ \
- \ V / | ||// __|   | || | | | | | | | | |
-  | |  | |  \__ \   | || |_| | |_| | |_| |
-  |_| |___| |___/   |_| \___/|____/ \___/
-
-  figure out how to merge forwarding objective and next objective
-
- */
-
     @Override
     public void forward(ForwardingObjective obj) {
         try {
